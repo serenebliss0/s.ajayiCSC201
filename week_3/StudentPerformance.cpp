@@ -99,9 +99,9 @@ double calculateAmountPaid(
 
 double calculateOutstandingBalance(
     double schoolFees,
-    double AmountPaid
+    double amountPaid
 ){
-    return schoolFees - AmountPaid;
+    return schoolFees - amountPaid;
 }
 
 
@@ -119,7 +119,7 @@ int main(){
     double percentageAlreadyPaid;
     
     cout << "What is the student's name?" << '\n';
-    cin.ignore();
+    // cin.ignore();
     getline(cin, studentName);
 
     cout << "\nEnter the student's matric number\n";
