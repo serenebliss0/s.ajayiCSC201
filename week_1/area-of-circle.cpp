@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define PI 3.14159
+constexpr double PI = 3.1415926536;
 
 using namespace std;
 
@@ -10,9 +10,9 @@ int main() {
     double radius = 0.0;
     cin >> radius;
 
-    double area = PI * radius * radius;
+    double areaOfCircle = PI * radius * radius;
 
-    printf("The area of your circle is %f", area);
+    printf("The area of your circle is %f", areaOfCircle);
 
     return 0;
 }
