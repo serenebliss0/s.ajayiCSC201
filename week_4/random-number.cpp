@@ -31,5 +31,6 @@ int main(){
 
     srand(time(0));
     cout << rand() % 91 + 10 << "\n";        // 10-100
+    //rand() % (max-min + 1) + min
     
 }
