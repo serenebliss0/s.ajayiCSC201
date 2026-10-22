@@ -69,6 +69,7 @@ double newBalance(double currentBalance, double totalDebitAmount){
 inline unsigned int generateTransactionID(){
 
     return (rand() % 9000) + 1000; //fix //TODO
+    //rand() % (max-min+1)
 }
 
 //customer struct
