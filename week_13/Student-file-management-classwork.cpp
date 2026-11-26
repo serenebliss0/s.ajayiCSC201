@@ -14,12 +14,14 @@ typedef struct{
 
 vector<Student> students;
 
+string fileName = "students.txt"; //can change one variable instead of multiple literals
+
 //add
 Student addNewStudentRecord(){
     Student student;
 
     cout << "Enter student name\n";
-    cin >> student.name;
+    getline(cin, student.name);
 
     cout << "Enter the student's matric number\n";
     cin >> student.matricNumber;
@@ -33,14 +35,17 @@ Student addNewStudentRecord(){
 }
 
 void pushStudentDetailsToFile(Student *student){
-    ofstream file("students.txt", ios::app);
+    ofstream file(fileName, ios::app);
 
     if(file.is_open()){
-        file << student->name << '\n';
-        file << student->matricNumber << '\n';
-        file << student ->score << '\n';
+        file << "Student Name: "<< student->name << '\n';
+        file << "Matric Number: " << student->matricNumber << '\n';
+        file << "Score: " <<student ->score << '\n';
+        file << '\n';
 
         file.close();
+
+        cout << "Student saved successfully\n";
     }
     else{
         cout << "Error opening file!\n";
@@ -48,12 +53,12 @@ void pushStudentDetailsToFile(Student *student){
 }
 
 bool doesFileExist(){
-    return filesystem::exists("students.txt");
+    return filesystem::exists(fileName);
 }
 
 void checkStudentDetailsFile(){
-    if(doesFileExist){
-        ifstream file("students.txt");
+    if(doesFileExist()){
+        ifstream file(fileName);
         string line;
 
         if(file.is_open()){
@@ -63,7 +68,7 @@ void checkStudentDetailsFile(){
             file.close();
         }
         else{
-            cout << "Student records file does not exist!";
+            cout << "Student records file does not exist!\nCreate one first and try again...\n";
         }
     }
 }
@@ -72,19 +77,29 @@ void checkStudentDetailsFile(){
 
 int main(){
 
+    int userChoice = 0;
+
+    do{
     cout << "Choose an option from the menu below\n";
     cout << "1. Add a new student record\n";
     cout << "2. View all student records\n";
-
-    int userChoice;
+    cout << "3. Exit\n";
 
     cin >> userChoice;
 
     switch(userChoice){
-        case 1: addNewStudentRecord(); break;
+        case 1: {
+            Student student = addNewStudentRecord();
+            pushStudentDetailsToFile(&student);
+            break;
+        }
         case 2: checkStudentDetailsFile(); break;
 
+        case 3: return 0;
+
         default:
-            cout << "Invalid option!\n";
+            cout << "Invalid option!\nTry again";
     }
+    }
+    while(userChoice != 3);
 }
