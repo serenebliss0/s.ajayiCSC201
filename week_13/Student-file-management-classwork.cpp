@@ -21,6 +21,7 @@ Student addNewStudentRecord(){
     Student student;
 
     cout << "Enter student name\n";
+    cin.ignore();
     getline(cin, student.name);
 
     cout << "Enter the student's matric number\n";
