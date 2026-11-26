@@ -27,6 +27,7 @@ class Student{
 
 int main(){
     Student student1 = Student("John", 78);
-
     student1.display();
+
+    return 0;
 }
